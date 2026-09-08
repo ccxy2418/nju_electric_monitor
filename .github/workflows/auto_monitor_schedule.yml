@@ -73,7 +73,7 @@ jobs:
       if: always()
       shell: bash
       env:
-        GIT_UPDATE_TOKEN: ${{ secrets.GIT_UPDATE_TOKEN }}
+        GIT_UPDATE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -90,7 +90,7 @@ jobs:
 
         # 使用 token 推送到当前分支
         git remote set-url origin https://x-access-token:${GIT_UPDATE_TOKEN}@github.com/${{ github.repository }}.git
-        git push origin "HEAD:$branch" || echo "Push failed"
+        git push origin "HEAD:$branch"
 
     - name: Show latest wrapper log
       if: always()
